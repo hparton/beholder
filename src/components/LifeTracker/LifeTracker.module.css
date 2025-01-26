@@ -34,10 +34,15 @@
     top: 0;
     bottom: 0;
     width: 25%;
-    opacity: 0;
+    opacity: 1;
+    background-color: transparent;
+    color: #1d1d1d;
+    font-size: 20px;
 
-    &:focus {
-        opacity: 0.2
+    &:focus, &:hover {
+        outline: none;
+        background-color: rgba(29, 29, 29, 0.2);
+        border-color: transparent;
     }
 }
 

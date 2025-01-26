@@ -11,11 +11,11 @@ type ExponentialButtonProps = {
     className?: string;
 };
 
-export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 250, intervalDelay = 250, intervalDelayFactor = 0.95, minimumIntervalDelay = 60, children, ...props }: ExponentialButtonProps) => {
+export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 250, intervalDelay = 200, intervalDelayFactor = 0.95, minimumIntervalDelay = 60, children, ...props }: ExponentialButtonProps) => {
     const [isHolding, setIsHolding] = useState<boolean>(false);
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const intervalRef = useRef<number | null>(null);
-    const intervalDelayRef = useRef(intervalDelay); // Start with an even faster interval
+    const intervalDelayRef = useRef(intervalDelay); 
 
 
     useEffect(() => {
@@ -62,6 +62,7 @@ export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 25
                 setIsClicked(true);
             }}
             onTouchEnd={(e) => {
+                if (!isHolding) onClick();
                 e.preventDefault(); // Prevent text selection
                 setIsClicked(false);
                 setIsHolding(false);
