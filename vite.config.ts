@@ -20,7 +20,7 @@ export default defineConfig({
         name: "Beholder MTG Life Counter",
         short_name: "Beholder",
         description: "MTG life counter, supports commander damage tracking",
-        theme_color: "#ffffff",
+        theme_color: "#242424",
         icons: [
           {
             src: "pwa-192x192.png",
