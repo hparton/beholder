@@ -1,0 +1,23 @@
+.layoutGrid {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.layoutGrid2 {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.layoutGrid3 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.layoutGrid4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
