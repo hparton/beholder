@@ -62,10 +62,10 @@ export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 25
                 setIsClicked(true);
             }}
             onTouchEnd={() => {
-                if (!isHolding) onClick();
                 setIsClicked(false);
                 setIsHolding(false);
             }}
+            style={{ touchAction: 'none' }}
         >
             {children}
         </button>
