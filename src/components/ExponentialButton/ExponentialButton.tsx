@@ -61,11 +61,12 @@ export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 25
                 e.preventDefault(); // Prevent text selection
                 setIsClicked(true);
             }}
-            onTouchEnd={() => {
+            onTouchEnd={(e) => {
+                e.preventDefault(); // Prevent text selection
                 setIsClicked(false);
                 setIsHolding(false);
             }}
-            style={{ touchAction: 'none' }}
+            style={{ userSelect: 'none' }}
         >
             {children}
         </button>
