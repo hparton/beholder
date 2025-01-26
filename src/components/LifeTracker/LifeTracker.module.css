@@ -25,6 +25,7 @@
     font-weight: 500;
     color: #1d1d1d;
     padding: 0.5em;
+    user-select: none;
 }
 
 .lifePlus,
@@ -61,6 +62,10 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(29, 29, 29, 0.5);
+}
+
+.commanderDamageCounter {
+    color: #1d1d1d;
 }
 
 .commanderDamageInner {

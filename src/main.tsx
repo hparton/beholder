@@ -16,14 +16,6 @@ document.addEventListener(
   false,
 );
 
-const touchHandler = (ev: TouchEvent) => {
-  ev.preventDefault() // Prevent text selection
-}
-document.addEventListener('touchstart', touchHandler, {passive:false})
-document.addEventListener('touchmove', touchHandler, {passive:false})
-document.addEventListener('touchend', touchHandler, {passive:false})
-document.addEventListener('touchcancel', touchHandler, {passive:false})
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
