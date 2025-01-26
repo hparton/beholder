@@ -30,8 +30,8 @@ export const CommanderDamage = ({players, player, onClickOutside, flipped}: Comm
             <div className={styles.commanderDamageInner}>
                 <LayoutGrid>
                     {players.map((p) => p.id === player ? <div className={cn(styles.commanderDamagePlayer, styles.commanderDamageSelf)} ></div> : (
-                        <div className={styles.commanderDamagePlayer} style={{backgroundColor: p?.color}} key={p.id}>
-                            <p key={p.id}>{commandDamageRecievedFromPlayers.find(c => c.player == p.id)?.damage ?? 0}</p>
+                        <div className={cn(styles.commanderDamagePlayer, {[styles.flipped]: flipped})} style={{backgroundColor: p?.color}} key={p.id}>
+                            <p key={p.id} className={styles.commanderDamageCounter}>{commandDamageRecievedFromPlayers.find(c => c.player == p.id)?.damage ?? 0}</p>
                             <ExponentialButton className={styles.lifePlus} onClick={() => handleRecordDamage(p.id, -1)}>-</ExponentialButton>
                             <ExponentialButton className={styles.lifeNegative} onClick={() => handleRecordDamage(p.id, 1)}>+</ExponentialButton>
                         </div>
