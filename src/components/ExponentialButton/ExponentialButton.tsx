@@ -57,6 +57,15 @@ export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 25
                 setIsClicked(false);
                 setIsHolding(false);
             }}
+            onTouchStart={(e) => {
+                e.preventDefault(); // Prevent text selection
+                setIsClicked(true);
+            }}
+            onTouchEnd={() => {
+                if (!isHolding) onClick();
+                setIsClicked(false);
+                setIsHolding(false);
+            }}
         >
             {children}
         </button>

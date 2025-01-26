@@ -5,6 +5,7 @@ import styles from './LifeTracker.module.css'
 import cn from 'classnames'
 import { ExponentialButton } from "../ExponentialButton/ExponentialButton";
 import { CommanderDamage } from "./CommanderDamage";
+import  randomColor  from 'randomcolor'
 
 type LifeTrackerProps = {
     player: string;
@@ -12,20 +13,6 @@ type LifeTrackerProps = {
     flipped?: boolean;
 }
 
-function generatePastelColor(seed: string) {
-    let hash = 0;
-    for (let i = 0; i < seed.length; i++) {
-        hash = seed.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const r = (hash & 0xFF0000) >> 16;
-    const g = (hash & 0x00FF00) >> 8;
-    const b = hash & 0x0000FF;
-    const pastelFactor = 0.7;
-    const pastelR = Math.floor((r + 255 * pastelFactor) / (1 + pastelFactor));
-    const pastelG = Math.floor((g + 255 * pastelFactor) / (1 + pastelFactor));
-    const pastelB = Math.floor((b + 255 * pastelFactor) / (1 + pastelFactor));
-    return `#${pastelR.toString(16).padStart(2, '0')}${pastelG.toString(16).padStart(2, '0')}${pastelB.toString(16).padStart(2, '0')}`;
-}
 
 export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) => {
     const [life, setLife] = useState(initialLife)
@@ -37,7 +24,10 @@ export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) =>
         registerPlayer({
             id: player,
             name: "",
-            color: generatePastelColor(player)
+            color: randomColor({
+                luminosity: 'light',
+                seed: player,
+             })
         })
 
         return () => {

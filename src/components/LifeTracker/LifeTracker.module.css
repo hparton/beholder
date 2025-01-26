@@ -14,11 +14,16 @@
 
 .dead {
     background: #1d1d1d !important;
+
+    .lifeCounter {
+        color: #ffffff;
+    }
 }
 
 .lifeCounter {
     font-size: 3em;
-    color: #ffffff;
+    font-weight: 500;
+    color: #1d1d1d;
     padding: 0.5em;
 }
 
