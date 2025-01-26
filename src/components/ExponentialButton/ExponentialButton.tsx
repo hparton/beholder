@@ -8,6 +8,7 @@ type ExponentialButtonProps = {
     intervalDelayFactor?: number;
     minimumIntervalDelay?: number;
     children: React.ReactNode;
+    className?: string;
 };
 
 export const ExponentialButton = ({ onClick, onHold = onClick, initialDelay = 250, intervalDelay = 250, intervalDelayFactor = 0.95, minimumIntervalDelay = 60, children, ...props }: ExponentialButtonProps) => {
