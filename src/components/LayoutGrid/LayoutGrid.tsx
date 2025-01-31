@@ -7,7 +7,7 @@ interface LayoutGridProps {
     layout: string;
 }
 
-const LayoutGrid: React.FC<LayoutGridProps> = ({ children, layout }) => {
+const LayoutGrid: React.FC<LayoutGridProps> = ({ children }) => {
     const {players} = usePlayers()
 
     console.log(styles[`layoutGrid${players.length}]`], `layoutGrid${players.length}`)

@@ -6,6 +6,7 @@ interface GameProps {
     startingLife: number;
     players: Pick<Player, "id">[],
     quitGame: () => void;
+    layout: string;
 }
 
 export const Game = ({startingLife, players, quitGame, layout}: GameProps) => {

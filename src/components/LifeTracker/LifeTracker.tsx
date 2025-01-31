@@ -11,6 +11,7 @@ type LifeTrackerProps = {
     player: string;
     initialLife: number;
     flipped?: boolean;
+    gridArea: number;
 }
 
 const getColorHueForPlayer = (playerIndex: number) => {

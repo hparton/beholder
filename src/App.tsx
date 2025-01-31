@@ -64,7 +64,7 @@ function App() {
 
     <PlayersProvider>
       <CommanderDamageProvider>
-        <Game quitGame={() => setGameStarted(false)} players={players} startingLife={startingLife} layout={layout} />
+        <Game quitGame={() => setGameStarted(false)} players={players} startingLife={startingLife} layout={layout.toString()} />
       </CommanderDamageProvider>
       </PlayersProvider>
       )}
