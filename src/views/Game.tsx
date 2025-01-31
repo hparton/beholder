@@ -8,14 +8,15 @@ interface GameProps {
     quitGame: () => void;
 }
 
-export const Game = ({startingLife, players, quitGame}: GameProps) => {
+export const Game = ({startingLife, players, quitGame, layout}: GameProps) => {
   const rotations = useLayouGridRotations()
 
   return (
     <>
-      <LayoutGrid>
+      <LayoutGrid layout={layout}>
         {players.map((player, index) => (
             <LifeTracker
+                gridArea={index + 1}
                 key={player.id}
                 player={player.id}
                 initialLife={startingLife}

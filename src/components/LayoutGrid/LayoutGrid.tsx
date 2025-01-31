@@ -4,10 +4,13 @@ import { usePlayers } from '../../context/PlayersContext';
 
 interface LayoutGridProps {
     children: React.ReactNode;
+    layout: string;
 }
 
-const LayoutGrid: React.FC<LayoutGridProps> = ({  children }) => {
+const LayoutGrid: React.FC<LayoutGridProps> = ({ children, layout }) => {
     const {players} = usePlayers()
+
+    console.log(styles[`layoutGrid${players.length}]`], `layoutGrid${players.length}`)
 
     return (
         <div className={`${styles.layoutGrid} ${styles[`layoutGrid${players.length}`]}`}>

@@ -13,12 +13,31 @@ type LifeTrackerProps = {
     flipped?: boolean;
 }
 
+const getColorHueForPlayer = (playerIndex: number) => {
+    switch (playerIndex) {
+        case 0:
+            return 'blue'
+        case 1:
+            return 'red'
+        case 2:
+            return 'green'
+        case 3:
+            return 'orange'
+        case 4:
+            return 'purple'
+        default:
+            return 'yellow'
+    }
+}
 
-export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) => {
+
+export const LifeTracker = ({initialLife, player, flipped, gridArea}: LifeTrackerProps) => {
     const [life, setLife] = useState(initialLife)
     const {playerDamage} = useCommanderDamage()
     const {players, registerPlayer, deregisterPlayer, getPlayerDetails} = usePlayers();
     const [showCommanderDamage, setShowCommanderDamage] = useState(false)
+
+    const playerIndex = players.findIndex(p => p.id === player)
 
     useEffect(() => {
         registerPlayer({
@@ -26,7 +45,7 @@ export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) =>
             name: "",
             color: randomColor({
                 luminosity: 'light',
-                seed: player,
+                hue: getColorHueForPlayer(playerIndex)
              })
         })
 
@@ -34,7 +53,7 @@ export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) =>
             // Clean up player when component unmounts
             deregisterPlayer(player)
         }
-    }, [deregisterPlayer, player, registerPlayer])
+    }, [deregisterPlayer, player, registerPlayer, playerIndex])
 
     const playerDetails = useMemo(() => getPlayerDetails(player), [getPlayerDetails, player])
     const totalLife = life - Object.values(playerDamage[player] || {}).reduce((acc, curr) => acc + curr, 0)
@@ -50,9 +69,9 @@ export const LifeTracker = ({initialLife, player, flipped}: LifeTrackerProps) =>
     }, [playerIsDead])
 
     return (
-        <div className={cn(styles.lifeTracker, {[styles.flipped]: flipped, [styles.dead]: playerIsDead})} style={{backgroundColor: playerDetails?.color}}>
+        <div className={cn(styles.lifeTracker, {[styles.flipped]: flipped, [styles.dead]: playerIsDead})} style={{backgroundColor: playerDetails?.color, gridArea: `area${gridArea}`}}>
             <p>{playerDetails?.name}</p>
-            <p className={styles.lifeCounter}>{playerIsDead ? 'Dead' : totalLife}</p>
+            <p className={styles.lifeCounter}>{playerIsDead ? 'R.I.P' : totalLife}</p>
             <ExponentialButton className={styles.lifePlus} onClick={() => !deadToCommanderDamage && setLife(life + 1)}>+</ExponentialButton>
             <ExponentialButton className={styles.lifeNegative} onClick={() => !deadToCommanderDamage && !playerIsDead && setLife(life - 1)}>-</ExponentialButton>
             <button className={styles.commanderToggle} onClick={() => setShowCommanderDamage(true)}>CMD DMG</button>
