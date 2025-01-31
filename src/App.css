@@ -38,3 +38,10 @@
 .read-the-docs {
   color: #888;
 }
+
+
+* {
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  user-select: none; /* standard property for compatibility */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
+}
